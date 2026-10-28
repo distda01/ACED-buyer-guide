@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.C.E.D. Buyer Style Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        /* Presentation canvas: the navigation is outside the 16:9 slide. */
+        .presentation { width: min(96vw, 1440px); }
+        #slide-container { aspect-ratio: 16 / 9; width: 100%; flex: none; overflow: hidden; }
+        .slide { overflow: auto; }
+        .slide img { max-height: 65vh; object-fit: contain; }
+        .presentation:fullscreen { width: 100vw; max-width: none; border-radius: 0; background: #111827; justify-content: center; }
+        .presentation:fullscreen #slide-container { max-height: calc(100vh - 75px); margin: auto; width: min(100vw, calc((100vh - 75px) * 16 / 9)); }
+        .presentation:fullscreen > div:last-child { width: 100%; }
+        @media (max-width: 800px) {
+            #slide-container { aspect-ratio: auto; height: min(72vh, 650px); }
+            .slide { padding: 1.25rem !important; }
+            .slide h1, .slide h2 { font-size: clamp(1.5rem, 5vw, 2.5rem) !important; line-height: 1.2; }
+            .slide h3 { font-size: 1.25rem !important; }
+            .slide p, .slide li { font-size: clamp(.85rem, 2.5vw, 1.1rem) !important; }
+            .slide .grid { gap: .75rem !important; }
+            .slide .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+            .slide .p-8, .slide .p-6 { padding: 1rem !important; }
+        }
+        /* Simple transition for slides */
+        .slide {
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
+
+    <!-- Presentation Container -->
+    <div class="presentation bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+        
+        <!-- Slide Area -->
+        <div id="slide-container" class="relative">
+
+            <!-- Slide 1: Title -->
+            <div class="slide absolute inset-0 flex items-center justify-center p-8 text-center bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/modern-office-with-communication-visualization-air_275897-1473.jpg');">
+                <div class="bg-black bg-opacity-50 p-8 rounded-lg">
+                    <h1 class="text-5xl font-bold text-white mb-4">The A.C.E.D. Buyer's Guide</h1>
+                    <p class="text-2xl text-gray-200">A Framework for Connecting with Any Buyer</p>
+                    <p class="text-lg text-gray-400 mt-4 italic">Based on the Playbook by Sales Gravy</p>
+                </div>
+            </div>
+
+            <!-- Slide 2: Why It Matters -->
+            <div class="slide absolute inset-0 p-12 flex items-center justify-center bg-white hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="text-gray-800">
+                        <h2 class="text-4xl font-bold mb-6 text-blue-800">Flex to Connect</h2>
+                        <p class="text-lg mb-4">You build deeper emotional connections when you interact with buyers based on who <span class="font-bold">they</span> are, not who <span class="font-bold">you</span> are.</p>
+                        <ul class="list-disc list-inside space-y-3 text-lg">
+                            <li><span class="font-bold">The Similarity Bias:</span> We naturally trust people who feel familiar.</li>
+                            <li><span class="font-bold">Builds Instant Trust:</span> Matching a buyer's style makes them more comfortable and open.</li>
+                            <li><span class="font-bold">Reduces Friction:</span> Eases buyer anxiety and opens the door for genuine connection.</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center">
+                         <img src="https://static.vecteezy.com/system/resources/previews/005/005/911/non_2x/two-business-people-shaking-hands-vector.jpg" alt="Two hands shaking representing connection" class="rounded-lg shadow-lg">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Personas -->
+            <div class="slide absolute inset-0 p-12 bg-gray-50 flex flex-col items-center justify-center hidden">
+                <h2 class="text-4xl font-bold mb-10 text-center text-gray-800">The Four Buyer Personalities</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
+                    <!-- Analyzer -->
+                    <div class="bg-blue-100 p-6 rounded-lg text-center shadow-md">
+                        <div class="text-4xl mb-3">🔎</div>
+                        <h3 class="text-2xl font-bold text-blue-800">ANALYZER</h3>
+                        <p class="text-blue-600">Data | Facts | Logic</p>
+                    </div>
+                    <!-- Director -->
+                    <div class="bg-red-100 p-6 rounded-lg text-center shadow-md">
+                        <div class="text-4xl mb-3">👑</div>
+                        <h3 class="text-2xl font-bold text-red-800">DIRECTOR</h3>
+                        <p class="text-red-600">Action | Results | Control</p>
+                    </div>
+                     <!-- Energizer -->
+                    <div class="bg-yellow-100 p-6 rounded-lg text-center shadow-md">
+                        <div class="text-4xl mb-3">⭐</div>
+                        <h3 class="text-2xl font-bold text-yellow-800">ENERGIZER</h3>
+                        <p class="text-yellow-600">Relationships | Significance | Energy</p>
+                    </div>
+                    <!-- Consensus Builder -->
+                    <div class="bg-green-100 p-6 rounded-lg text-center shadow-md">
+                        <div class="text-4xl mb-3">🧩</div>
+                        <h3 class="text-2xl font-bold text-green-800">CONSENSUS BUILDER</h3>
+                        <p class="text-green-600">Inclusion | Safety | Team</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 4: Analyzer -->
+            <div class="slide absolute inset-0 p-12 bg-cover bg-center hidden" style="background-image: url('https://www.meme-arsenal.com/memes/f6d74420df2237b12017cdd75ef1fc5b.jpg');">
+                 <div class="bg-white bg-opacity-80 p-8 rounded-lg max-w-2xl">
+                    <h2 class="text-4xl font-bold text-blue-900">The Analyzer: "Just the facts."</h2>
+                    <p class="text-xl mt-4 text-gray-700">Systematic, methodical, and logical. They need to see the data and will reject hype.</p>
+                    <ul class="mt-6 space-y-2 text-lg">
+                        <li><span class="font-bold">Core Need:</span> To be correct.</li>
+                        <li><span class="font-bold">Approach:</span> Be over-prepared, back up claims with facts, and be patient.</li>
+                    </ul>
+                    <p class="mt-6 text-blue-800 italic font-semibold">Pro Tip: Win with methodical patience. Know your numbers cold.</p>
+                </div>
+            </div>
+            
+            <!-- Slide 5: Director -->
+            <div class="slide absolute inset-0 p-12 bg-cover bg-center hidden" style="background-image: url('https://www.parker.edu/wp-content/uploads/2022/04/iStock-1286951857-1.jpg');">
+                 <div class="bg-white bg-opacity-80 p-8 rounded-lg max-w-2xl text-gray-800">
+                    <h2 class="text-4xl font-bold text-red-900">The Director: "Get to the point."</h2>
+                    <p class="text-xl mt-4">Action-oriented, fast-moving, and decisive. They value salespeople who get things done quickly.</p>
+                    <ul class="mt-6 space-y-2 text-lg">
+                        <li><span class="font-bold">Core Need:</span> To be in control.</li>
+                        <li><span class="font-bold">Approach:</span> Project confidence, prioritize business, and be concise.</li>
+                    </ul>
+                    <p class="mt-6 text-red-800 italic font-semibold">Pro Tip: Respond to their challenges with respectful confidence.</p>
+                </div>
+            </div>
+            
+            <!-- Slide 6: Energizer -->
+            <div class="slide absolute inset-0 p-12 bg-cover bg-center hidden" style="background-image: url('https://www.superiorwallpapers.com/download/abstract-colorful-wallpaper-hd-bright-colors-2560x1440.jpg');">
+                 <div class="bg-white bg-opacity-80 p-8 rounded-lg max-w-2xl">
+                    <h2 class="text-4xl font-bold text-yellow-900">The Energizer: "Let's connect!"</h2>
+                    <p class="text-xl mt-4 text-gray-700">Relational, animated, and emotional. For them, the relationship comes before the business.</p>
+                    <ul class="mt-6 space-y-2 text-lg">
+                        <li><span class="font-bold">Core Need:</span> To be appreciated and feel significant.</li>
+                        <li><span class="font-bold">Approach:</span> Listen intently, ask open-ended questions, and build rapport.</li>
+                    </ul>
+                    <p class="mt-6 text-yellow-800 italic font-semibold">Pro Tip: They will often buy from you simply because they like you.</p>
+                </div>
+            </div>
+
+            <!-- Slide 7: Consensus Builder -->
+            <div class="slide absolute inset-0 p-12 bg-cover bg-center hidden" style="background-image: url('https://img.freepik.com/premium-photo/hybrid-office-teamwork-digital-whiteboard-collaboration_1127216-474.jpg');">
+                 <div class="bg-white bg-opacity-80 p-8 rounded-lg max-w-2xl">
+                    <h2 class="text-4xl font-bold text-green-900">The Consensus Builder: "Let's get everyone on board."</h2>
+                    <p class="text-xl mt-4 text-gray-700">Inclusive, risk-averse, and friendly. They want to ensure everyone feels included in the decision.</p>
+                    <ul class="mt-6 space-y-2 text-lg">
+                        <li><span class="font-bold">Core Need:</span> To have security and be included.</li>
+                        <li><span class="font-bold">Approach:</span> Slow down, earn trust, and map out stakeholders.</li>
+                    </ul>
+                    <p class="mt-6 text-green-800 italic font-semibold">Pro Tip: The fastest path to a decision is a group meeting with all stakeholders.</p>
+                </div>
+            </div>
+            
+            <!-- Slide 8: Do's and Don'ts 1 -->
+            <div class="slide absolute inset-0 p-12 bg-white hidden flex flex-col items-center justify-center">
+                 <h2 class="text-4xl font-bold mb-8 text-gray-800">Winning Them Over</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+                    <div class="border-4 border-blue-200 p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-4">The Analyzer</h3>
+                        <p class="text-green-600 font-semibold mb-1">✅ Present objective data</p>
+                        <p class="text-green-600 font-semibold mb-4">✅ Build the relationship slowly</p>
+                        <p class="text-red-600 font-semibold mb-1">❌ Don't get too personal</p>
+                        <p class="text-red-600 font-semibold">❌ Don't be unprepared</p>
+                    </div>
+                    <div class="border-4 border-red-200 p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-red-800 mb-4">The Director</h3>
+                        <p class="text-green-600 font-semibold mb-1">✅ Use bullet points & be concise</p>
+                        <p class="text-green-600 font-semibold mb-4">✅ Get right to the point</p>
+                        <p class="text-red-600 font-semibold mb-1">❌ Don't fake an answer</p>
+                        <p class="text-red-600 font-semibold">❌ Don't act weak or scared</p>
+                    </div>
+                 </div>
+            </div>
+
+            <!-- Slide 9: Do's and Don'ts 2 -->
+             <div class="slide absolute inset-0 p-12 bg-white hidden flex flex-col items-center justify-center">
+                 <h2 class="text-4xl font-bold mb-8 text-gray-800">Building the Relationship</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+                    <div class="border-4 border-yellow-200 p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-yellow-800 mb-4">The Energizer</h3>
+                        <p class="text-green-600 font-semibold mb-1">✅ Let them talk & be the star</p>
+                        <p class="text-green-600 font-semibold mb-4">✅ Use an organized agenda</p>
+                        <p class="text-red-600 font-semibold mb-1">❌ Don't interrupt them</p>
+                        <p class="text-red-600 font-semibold">❌ Don't jump straight to business</p>
+                    </div>
+                    <div class="border-4 border-green-200 p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold text-green-800 mb-4">The Consensus Builder</h3>
+                        <p class="text-green-600 font-semibold mb-1">✅ Agree on a clear decision timeline</p>
+                        <p class="text-green-600 font-semibold mb-4">✅ Give short answers & ask questions</p>
+                        <p class="text-red-600 font-semibold mb-1">❌ Don't use high-pressure tactics</p>
+                        <p class="text-red-600 font-semibold">❌ Don't ignore their need for group buy-in</p>
+                    </div>
+                 </div>
+            </div>
+            
+             <!-- Slide 10: Quick Guide -->
+            <div class="slide absolute inset-0 p-12 bg-gray-800 text-white flex flex-col items-center justify-center hidden">
+                <h2 class="text-4xl font-bold mb-10 text-center">How to Adapt in Real-Time</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
+                    <div class="text-center p-4">
+                        <div class="text-5xl mb-3">🔎</div>
+                        <p class="text-xl">vs. <span class="font-bold">Analyzer:</span> Slow down. Bring data.</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="text-5xl mb-3">👑</div>
+                        <p class="text-xl">vs. <span class="font-bold">Director:</span> Speed up. Be confident.</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="text-5xl mb-3">⭐</div>
+                        <p class="text-xl">vs. <span class="font-bold">Energizer:</span> Build rapport. Listen more.</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="text-5xl mb-3">🧩</div>
+                        <p class="text-xl">vs. <span class="font-bold">Consensus Builder:</span> Facilitate. Connect the group.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 11: Takeaways -->
+            <div class="slide absolute inset-0 p-12 bg-blue-900 text-white hidden flex flex-col items-center justify-center text-center">
+                <h2 class="text-5xl font-bold mb-8">Adapt Your Approach, Win the Deal.</h2>
+                <p class="text-xl mb-12 max-w-3xl">Flexing your communication style is a powerful sales skill that builds trust and creates an unbeatable competitive advantage.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-lg">
+                    <p><span class="font-bold">Analyzer:</span> Be Patient & Prepared</p>
+                    <p><span class="font-bold">Director:</span> Be Confident & Concise</p>
+                    <p><span class="font-bold">Energizer:</span> Be Engaging & A Great Listener</p>
+                    <p><span class="font-bold">Consensus Builder:</span> Be Inclusive & Patient</p>
+                </div>
+            </div>
+
+            <!-- Slide 12: Q&A -->
+            <div class="slide absolute inset-0 p-8 flex flex-col items-center justify-center text-center bg-cover bg-center hidden" style="background-image: url('https://img.freepik.com/premium-photo/modern-office-with-communication-visualization-air_275897-1473.jpg');">
+                 <div class="bg-black bg-opacity-50 p-8 rounded-lg">
+                    <h2 class="text-6xl font-bold text-white mb-4">Thank You</h2>
+                    <p class="text-4xl text-gray-200 mb-8">Questions?</p>
+                    <p class="text-xl text-white">Dan DiStefano | Home Loan Consultant</p>
+                    <p class="text-lg text-gray-300">NMLS# 2280243</p>
+                    <p class="text-lg text-gray-300">302-229-2100</p>
+                    <p class="text-lg text-gray-300">ddistefano@mainstreethl.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation: separate from the slide canvas -->
+        <div class="bg-gray-800 text-white p-3 flex items-center justify-between">
+            <button id="prevBtn" class="bg-gray-600 hover:bg-gray-500 font-bold py-2 px-4 rounded-lg transition-colors">
+                &larr; Previous
+            </button>
+            <div id="slide-counter" class="text-sm" aria-live="polite">Slide 1 / 12</div>
+            <button id="fullscreenBtn" type="button" class="bg-gray-600 hover:bg-gray-500 py-2 px-3 rounded-lg" title="Toggle fullscreen">⛶ Fullscreen</button>
+            <button id="nextBtn" class="bg-blue-600 hover:bg-blue-500 font-bold py-2 px-4 rounded-lg transition-colors">
+                Next &rarr;
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideCounter = document.getElementById('slide-counter');
+            let currentSlide = 0;
+
+            // Function to show a specific slide
+            function showSlide(index) {
+                // Ensure index is within bounds
+                currentSlide = Math.max(0, Math.min(index, slides.length - 1));
+
+                // Hide all slides
+                slides.forEach((slide, i) => {
+                    if (i === currentSlide) {
+                        slide.classList.remove('hidden');
+                        slide.style.opacity = 1;
+                    } else {
+                        slide.classList.add('hidden');
+                        slide.style.opacity = 0;
+                    }
+                });
+
+                // Update slide counter
+                slideCounter.textContent = `Slide ${currentSlide + 1} / ${slides.length}`;
+
+                // Update button states
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === slides.length - 1;
+                prevBtn.classList.toggle('opacity-50', currentSlide === 0);
+                nextBtn.classList.toggle('opacity-50', currentSlide === slides.length - 1);
+            }
+
+            // Event listeners for buttons
+            nextBtn.addEventListener('click', () => {
+                showSlide(currentSlide + 1);
+            });
+
+            prevBtn.addEventListener('click', () => {
+                showSlide(currentSlide - 1);
+            });
+            
+            document.getElementById('fullscreenBtn').addEventListener('click', () => {
+                const presentation = document.querySelector('.presentation');
+                if (document.fullscreenElement) document.exitFullscreen();
+                else if (presentation.requestFullscreen) presentation.requestFullscreen();
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'ArrowRight') {
+                   showSlide(currentSlide + 1);
+                } else if (e.key === 'ArrowLeft') {
+                   showSlide(currentSlide - 1);
+                }
+            });
+
+            // Initialize the first slide
+            showSlide(currentSlide);
+        });
+    </script>
+</body>
+</html>
