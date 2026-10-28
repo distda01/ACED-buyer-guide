@@ -10,6 +10,24 @@
         body {
             font-family: 'Roboto', sans-serif;
         }
+        /* Presentation canvas: the navigation is outside the 16:9 slide. */
+        .presentation { width: min(96vw, 1440px); }
+        #slide-container { aspect-ratio: 16 / 9; width: 100%; flex: none; overflow: hidden; }
+        .slide { overflow: auto; }
+        .slide img { max-height: 65vh; object-fit: contain; }
+        .presentation:fullscreen { width: 100vw; max-width: none; border-radius: 0; background: #111827; justify-content: center; }
+        .presentation:fullscreen #slide-container { max-height: calc(100vh - 75px); margin: auto; width: min(100vw, calc((100vh - 75px) * 16 / 9)); }
+        .presentation:fullscreen > div:last-child { width: 100%; }
+        @media (max-width: 800px) {
+            #slide-container { aspect-ratio: auto; height: min(72vh, 650px); }
+            .slide { padding: 1.25rem !important; }
+            .slide h1, .slide h2 { font-size: clamp(1.5rem, 5vw, 2.5rem) !important; line-height: 1.2; }
+            .slide h3 { font-size: 1.25rem !important; }
+            .slide p, .slide li { font-size: clamp(.85rem, 2.5vw, 1.1rem) !important; }
+            .slide .grid { gap: .75rem !important; }
+            .slide .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+            .slide .p-8, .slide .p-6 { padding: 1rem !important; }
+        }
         /* Simple transition for slides */
         .slide {
             transition: opacity 0.5s ease-in-out;
@@ -19,10 +37,10 @@
 <body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
 
     <!-- Presentation Container -->
-    <div class="w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden aspect-video flex flex-col">
+    <div class="presentation bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
         
         <!-- Slide Area -->
-        <div id="slide-container" class="flex-grow relative">
+        <div id="slide-container" class="relative">
 
             <!-- Slide 1: Title -->
             <div class="slide absolute inset-0 flex items-center justify-center p-8 text-center bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/modern-office-with-communication-visualization-air_275897-1473.jpg');">
@@ -212,7 +230,7 @@
             </div>
 
             <!-- Slide 12: Q&A -->
-            <div class="slide absolute inset-0 p-8 flex flex-col items-center justify-center text-center bg-cover bg-center" style="background-image: url('https://img.freepik.com/premium-photo/modern-office-with-communication-visualization-air_275897-1473.jpg');">
+            <div class="slide absolute inset-0 p-8 flex flex-col items-center justify-center text-center bg-cover bg-center hidden" style="background-image: url('https://img.freepik.com/premium-photo/modern-office-with-communication-visualization-air_275897-1473.jpg');">
                  <div class="bg-black bg-opacity-50 p-8 rounded-lg">
                     <h2 class="text-6xl font-bold text-white mb-4">Thank You</h2>
                     <p class="text-4xl text-gray-200 mb-8">Questions?</p>
@@ -224,12 +242,13 @@
             </div>
         </div>
 
-        <!-- Navigation -->
+        <!-- Navigation: separate from the slide canvas -->
         <div class="bg-gray-800 text-white p-3 flex items-center justify-between">
             <button id="prevBtn" class="bg-gray-600 hover:bg-gray-500 font-bold py-2 px-4 rounded-lg transition-colors">
                 &larr; Previous
             </button>
-            <div id="slide-counter" class="text-sm">Slide 1 / 12</div>
+            <div id="slide-counter" class="text-sm" aria-live="polite">Slide 1 / 12</div>
+            <button id="fullscreenBtn" type="button" class="bg-gray-600 hover:bg-gray-500 py-2 px-3 rounded-lg" title="Toggle fullscreen">⛶ Fullscreen</button>
             <button id="nextBtn" class="bg-blue-600 hover:bg-blue-500 font-bold py-2 px-4 rounded-lg transition-colors">
                 Next &rarr;
             </button>
@@ -248,13 +267,7 @@
             // Function to show a specific slide
             function showSlide(index) {
                 // Ensure index is within bounds
-                if (index >= slides.length) {
-                    currentSlide = 0;
-                } else if (index < 0) {
-                    currentSlide = slides.length - 1;
-                } else {
-                    currentSlide = index;
-                }
+                currentSlide = Math.max(0, Math.min(index, slides.length - 1));
 
                 // Hide all slides
                 slides.forEach((slide, i) => {
@@ -286,6 +299,12 @@
                 showSlide(currentSlide - 1);
             });
             
+            document.getElementById('fullscreenBtn').addEventListener('click', () => {
+                const presentation = document.querySelector('.presentation');
+                if (document.fullscreenElement) document.exitFullscreen();
+                else if (presentation.requestFullscreen) presentation.requestFullscreen();
+            });
+
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
                 if(e.key === 'ArrowRight') {
